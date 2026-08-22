@@ -25,7 +25,7 @@ abstract final class AppTheme {
       useMaterial3: true,
 
       // ── پالت رنگی پایه ────────────────────────────────────────────────────
-      colorScheme: ColorScheme.dark(
+      colorScheme: const ColorScheme.dark(
         primary: AppColors.neonOrange,
         onPrimary: AppColors.textOnNeon,
         primaryContainer: AppColors.glassActive,
@@ -40,8 +40,6 @@ abstract final class AppTheme {
         outlineVariant: AppColors.surface3,
         error: AppColors.priorityUrgent,
         onError: Colors.white,
-        background: AppColors.background,
-        onBackground: AppColors.textPrimary,
         inverseSurface: AppColors.textPrimary,
         onInverseSurface: AppColors.background,
         inversePrimary: AppColors.neonOrangeDark,

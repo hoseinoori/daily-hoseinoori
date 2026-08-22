@@ -178,7 +178,7 @@ class _KanbanColumnState extends State<KanbanColumn> {
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          Icon(
+          const Icon(
             Icons.inbox_rounded,
             color: AppColors.textDisabled,
             size: 36,

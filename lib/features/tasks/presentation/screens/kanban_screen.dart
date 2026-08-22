@@ -33,7 +33,7 @@ class KanbanScreen extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('کانبان تسک‌ها', style: AppTextStyles.headlineSmall),
+            const Text('کانبان تسک‌ها', style: AppTextStyles.headlineSmall),
             Consumer<TaskProvider>(
               builder: (_, p, __) => Text(
                 '${p.totalActiveTasks} تسک فعال',
@@ -161,8 +161,8 @@ class _RoleFilterButton extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
+            const Padding(
+              padding: EdgeInsets.all(16),
               child: Text('فیلتر بر اساس نقش', style: AppTextStyles.titleLarge),
             ),
             const Divider(height: 1),

@@ -38,7 +38,7 @@ class NeonTimerDisplay extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             // ۱. حلقه پس‌زمینه
-            SizedBox(
+            const SizedBox(
               width: 250,
               height: 250,
               child: CircularProgressIndicator(

@@ -19,7 +19,6 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/glass_card.dart';
 import '../../../calendar/utils/jalali_helper.dart';
-import '../../../roles/providers/role_provider.dart';
 import '../../providers/note_provider.dart';
 import '../widgets/add_edit_note_sheet.dart';
 import '../widgets/note_card.dart';
@@ -44,7 +43,6 @@ class _NotesScreenState extends State<NotesScreen> {
   @override
   Widget build(BuildContext context) {
     final noteProvider = context.watch<NoteProvider>();
-    final roleProvider = context.watch<RoleProvider>();
     final isDailyTab = noteProvider.activeTabIndex == 1;
     final currentNotes = isDailyTab
         ? noteProvider.filteredDailyNotes
@@ -56,7 +54,7 @@ class _NotesScreenState extends State<NotesScreen> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('یادداشت‌ها و ژورنال', style: AppTextStyles.headlineSmall),
+            const Text('یادداشت‌ها و ژورنال', style: AppTextStyles.headlineSmall),
             Text(
               isDailyTab
                   ? 'یادداشت‌های متصل به روز'

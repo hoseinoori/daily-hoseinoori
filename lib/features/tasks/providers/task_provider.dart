@@ -27,7 +27,7 @@ class TaskProvider extends ChangeNotifier {
   List<Task> _todoTasks = [];
   List<Task> _inProgressTasks = [];
   List<Task> _doneTasks = [];
-  Map<String, List<Subtask>> _subtasksMap = {};
+  final Map<String, List<Subtask>> _subtasksMap = {};
   bool _isLoading = false;
   String? _error;
 

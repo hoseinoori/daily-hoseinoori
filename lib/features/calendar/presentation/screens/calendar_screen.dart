@@ -40,7 +40,7 @@ class CalendarScreen extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('تقویم و گاه‌شمار روزانه', style: AppTextStyles.headlineSmall),
+            const Text('تقویم و گاه‌شمار روزانه', style: AppTextStyles.headlineSmall),
             Text(
               selectedDate.fullFormatted,
               style: AppTextStyles.bodySmall.copyWith(

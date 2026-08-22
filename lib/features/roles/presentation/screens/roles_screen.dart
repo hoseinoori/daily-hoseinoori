@@ -32,7 +32,7 @@ class RolesScreen extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('نقشه ذهنی نقش‌ها', style: AppTextStyles.headlineSmall),
+            const Text('نقشه ذهنی نقش‌ها', style: AppTextStyles.headlineSmall),
             Text(
               'حوزه‌های زندگی و مسئولیت‌ها',
               style:
@@ -148,7 +148,7 @@ class RolesScreen extends StatelessWidget {
               shape: BoxShape.circle,
               color: AppColors.glassBackground,
               border: Border.all(color: AppColors.glassBorder),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: AppColors.glowNeonOrange,
                   blurRadius: 30,
@@ -163,7 +163,7 @@ class RolesScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 28),
-          Text('نقشه ذهنی خالی است', style: AppTextStyles.headlineSmall),
+          const Text('نقشه ذهنی خالی است', style: AppTextStyles.headlineSmall),
           const SizedBox(height: 12),
           Text(
             'اولین حوزه زندگی‌ات را اضافه کن\n(مثل: کار، آموزش، سلامت)',

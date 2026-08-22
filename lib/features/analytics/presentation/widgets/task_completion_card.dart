@@ -52,7 +52,7 @@ class TaskCompletionCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('نرخ تکمیل تسک‌ها', style: AppTextStyles.titleMedium),
+                  const Text('نرخ تکمیل تسک‌ها', style: AppTextStyles.titleMedium),
                   Text(
                     '$completedTasks از $totalTasks تسک انجام شده است',
                     style: AppTextStyles.bodySmall.copyWith(

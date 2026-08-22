@@ -167,7 +167,7 @@ class _AddEditNoteSheetState extends State<AddEditNoteSheet> {
                   // اتصال به روز (یادداشت روزانه)
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         'اتصال به تاریخ روز (ژورنال روزانه)',
                         style: AppTextStyles.bodyMedium,
                       ),

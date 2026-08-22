@@ -51,7 +51,7 @@ class FocusRatioCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('نسبت تمرکز به استراحت',
+                  const Text('نسبت تمرکز به استراحت',
                       style: AppTextStyles.titleMedium),
                   Text(
                     'مجموع $totalMinutes دقیقه زمان ثبت‌شده',
@@ -77,7 +77,7 @@ class FocusRatioCard extends StatelessWidget {
                     Expanded(
                       flex: (deepWorkRatio * 1000).toInt(),
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: AppColors.neonOrange,
                           boxShadow: [
                             BoxShadow(

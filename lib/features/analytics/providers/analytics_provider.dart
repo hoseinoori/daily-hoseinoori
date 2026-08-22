@@ -12,7 +12,6 @@ library;
 import 'package:flutter/foundation.dart';
 
 import '../../../core/constants/app_constants.dart';
-import '../../../core/database/app_database.dart';
 import '../../focus_timer/data/repositories/focus_repository.dart';
 import '../../roles/data/repositories/role_repository.dart';
 import '../../tasks/data/repositories/task_repository.dart';
@@ -68,7 +67,7 @@ class AnalyticsProvider extends ChangeNotifier {
   int _totalDeepWorkMinutes = 0;
   int _totalRestMinutes = 0;
   List<DayFocusStat> _last7DaysStats = [];
-  List<RoleFocusStat> _roleStats = [];
+  final List<RoleFocusStat> _roleStats = [];
   bool _isLoading = false;
 
   // ── Getters ────────────────────────────────────────────────────────────────

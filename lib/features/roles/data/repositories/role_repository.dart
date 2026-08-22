@@ -10,7 +10,7 @@ library;
 import 'package:drift/drift.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../core/database/app_database.dart';
+import '../../../../core/database/app_database.dart';
 
 /// [RoleRepository] – مدیریت عملیات دیتابیسی نقش‌ها
 class RoleRepository {

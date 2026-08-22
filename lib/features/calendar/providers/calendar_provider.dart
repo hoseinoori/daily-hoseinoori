@@ -38,7 +38,7 @@ class CalendarProvider extends ChangeNotifier {
   List<PersianEvent> _allEvents = [];
   List<Task> _dailyTasks = [];
   List<RecurringRoutine> _dailyRoutines = [];
-  bool _isLoading = false;
+  final bool _isLoading = false;
 
   // ── Getters ────────────────────────────────────────────────────────────────
   JalaliDate get selectedDate => _selectedDate;

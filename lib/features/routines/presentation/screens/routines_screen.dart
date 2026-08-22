@@ -29,7 +29,7 @@ class RoutinesScreen extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('برنامه هفتگی', style: AppTextStyles.headlineSmall),
+            const Text('برنامه هفتگی', style: AppTextStyles.headlineSmall),
             Text(
               'روتین‌های تکرارشونده',
               style: AppTextStyles.bodySmall
@@ -60,7 +60,7 @@ class RoutinesScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               // لیست روتین‌ها
-              Text('تمام روتین‌ها', style: AppTextStyles.titleLarge),
+              const Text('تمام روتین‌ها', style: AppTextStyles.titleLarge),
               const SizedBox(height: 12),
               ...provider.routines.map(
                 (routine) => Padding(
@@ -94,7 +94,7 @@ class RoutinesScreen extends StatelessWidget {
               shape: BoxShape.circle,
               color: AppColors.glassBackground,
               border: Border.all(color: AppColors.glassBorder),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: AppColors.glowNeonOrange,
                   blurRadius: 30,
@@ -105,7 +105,7 @@ class RoutinesScreen extends StatelessWidget {
                 size: 56, color: AppColors.neonOrange),
           ),
           const SizedBox(height: 24),
-          Text('هنوز روتینی نداری', style: AppTextStyles.headlineSmall),
+          const Text('هنوز روتینی نداری', style: AppTextStyles.headlineSmall),
           const SizedBox(height: 8),
           Text(
             'عادت‌های روزانه و هفتگی‌ات را اینجا ثبت کن',
@@ -149,7 +149,7 @@ class _WeeklyGrid extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('نمای هفتگی', style: AppTextStyles.titleMedium),
+          const Text('نمای هفتگی', style: AppTextStyles.titleMedium),
           const SizedBox(height: 14),
           // هدر روزها
           Row(
@@ -249,8 +249,6 @@ class _RoutineCard extends StatelessWidget {
   final RecurringRoutine routine;
 
   const _RoutineCard({required this.routine});
-
-  static const _dayNames = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'];
 
   @override
   Widget build(BuildContext context) {

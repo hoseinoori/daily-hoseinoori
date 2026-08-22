@@ -21,7 +21,6 @@ import '../../../../core/widgets/glass_card.dart';
 import '../../../../core/widgets/neon_progress_bar.dart';
 import '../../../../core/widgets/task_indicators.dart';
 import '../../providers/task_provider.dart';
-import 'add_edit_task_sheet.dart';
 import 'task_detail_sheet.dart';
 
 /// [TaskCard] – کارت Draggable برای Kanban Board
@@ -116,7 +115,7 @@ class _CardContent extends StatelessWidget {
         ),
         boxShadow: isDragging
             ? [
-                BoxShadow(
+                const BoxShadow(
                   color: AppColors.glowNeonOrange,
                   blurRadius: 20,
                   spreadRadius: 2,

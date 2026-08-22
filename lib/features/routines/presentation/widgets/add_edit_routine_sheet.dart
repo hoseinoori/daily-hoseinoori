@@ -119,7 +119,7 @@ class _AddEditRoutineSheetState extends State<AddEditRoutineSheet> {
             const SizedBox(height: 20),
 
             // انتخاب ساعت
-            Text('بازه زمانی', style: AppTextStyles.titleSmall),
+            const Text('بازه زمانی', style: AppTextStyles.titleSmall),
             const SizedBox(height: 10),
             Row(
               children: [
@@ -149,7 +149,7 @@ class _AddEditRoutineSheetState extends State<AddEditRoutineSheet> {
             const SizedBox(height: 20),
 
             // انتخاب روزهای هفته
-            Text('روزهای تکرار', style: AppTextStyles.titleSmall),
+            const Text('روزهای تکرار', style: AppTextStyles.titleSmall),
             const SizedBox(height: 10),
             Wrap(
               spacing: 8,

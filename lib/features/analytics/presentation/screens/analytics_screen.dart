@@ -26,7 +26,7 @@ class AnalyticsScreen extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('آمار و تحلیل بهره‌وری', style: AppTextStyles.headlineSmall),
+            const Text('آمار و تحلیل بهره‌وری', style: AppTextStyles.headlineSmall),
             Text(
               'گزارش جامع عملکرد و تمرکز',
               style: AppTextStyles.bodySmall

@@ -19,7 +19,6 @@ import '../../../../core/constants/app_constants.dart';
 import '../../../../core/database/app_database.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/widgets/task_indicators.dart';
 import '../../../roles/providers/role_provider.dart';
 import '../../providers/task_provider.dart';
 
@@ -143,7 +142,7 @@ class _AddEditTaskSheetState extends State<AddEditTaskSheet> {
                   const SizedBox(height: 20),
 
                   // ── اولویت ──────────────────────────────────────────────────
-                  Text('اولویت', style: AppTextStyles.titleSmall),
+                  const Text('اولویت', style: AppTextStyles.titleSmall),
                   const SizedBox(height: 10),
                   Row(
                     children: _priorities
@@ -194,7 +193,7 @@ class _AddEditTaskSheetState extends State<AddEditTaskSheet> {
                   const SizedBox(height: 20),
 
                   // ── نقش مرتبط ────────────────────────────────────────────────
-                  Text('نقش مرتبط', style: AppTextStyles.titleSmall),
+                  const Text('نقش مرتبط', style: AppTextStyles.titleSmall),
                   const SizedBox(height: 10),
                   if (roles.isEmpty)
                     Text(
@@ -231,7 +230,7 @@ class _AddEditTaskSheetState extends State<AddEditTaskSheet> {
                   // ── ددلاین ──────────────────────────────────────────────────
                   Row(
                     children: [
-                      Expanded(
+                      const Expanded(
                         child: Text('مهلت انجام', style: AppTextStyles.titleSmall),
                       ),
                       if (_deadline != null)
@@ -277,7 +276,7 @@ class _AddEditTaskSheetState extends State<AddEditTaskSheet> {
                   // ── تاریخ تقویم + Timeline ──────────────────────────────────
                   Row(
                     children: [
-                      Text('برنامه‌ریزی در تقویم',
+                      const Text('برنامه‌ریزی در تقویم',
                           style: AppTextStyles.titleSmall),
                       const Spacer(),
                       Switch(
@@ -306,7 +305,7 @@ class _AddEditTaskSheetState extends State<AddEditTaskSheet> {
                     // آیا Timeline مشخص دارد؟
                     Row(
                       children: [
-                        Text('با ساعت مشخص (Timeline)',
+                        const Text('با ساعت مشخص (Timeline)',
                             style: AppTextStyles.bodyMedium),
                         const Spacer(),
                         Switch(

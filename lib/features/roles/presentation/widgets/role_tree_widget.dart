@@ -228,7 +228,7 @@ class RoleTreeWidget extends StatelessWidget {
       1 => AppColors.priorityLow,
       2 => AppColors.statusDone,
       3 => AppColors.priorityMedium,
-      _ => AppColors.religousEventGold,
+      _ => const Color(0xFFFFD740),
     };
   }
 
@@ -375,9 +375,4 @@ class _RoleOptionsSheet extends StatelessWidget {
         ) ??
         false;
   }
-}
-
-// Extension برای رنگ‌هایی که در فایل AppColors نیستند
-extension on AppColors {
-  static const Color religousEventGold = Color(0xFFFFD740);
 }

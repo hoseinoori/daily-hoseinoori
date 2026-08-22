@@ -6,7 +6,6 @@ library;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/database/app_database.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/glass_card.dart';
@@ -28,7 +27,7 @@ class FocusTimerScreen extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('تایمر فوکوس و تایم‌باکس', style: AppTextStyles.headlineSmall),
+            const Text('تایمر فوکوس و تایم‌باکس', style: AppTextStyles.headlineSmall),
             Text(
               'امروز: ${focusProvider.todayTotalMinutes} دقیقه تمرکز (${focusProvider.todayLogs.length} سشن)',
               style: AppTextStyles.bodySmall.copyWith(
@@ -60,13 +59,13 @@ class FocusTimerScreen extends StatelessWidget {
           const SizedBox(height: 24),
 
           // ۴. انتخاب دسته‌بندی سشن
-          Text('دسته‌بندی تمرکز', style: AppTextStyles.titleMedium),
+          const Text('دسته‌بندی تمرکز', style: AppTextStyles.titleMedium),
           const SizedBox(height: 10),
           _buildCategorySelector(focusProvider),
           const SizedBox(height: 20),
 
           // ۵. اتصال به تسک فعال (اختیاری)
-          Text('اتصال به تسک (اختیاری)', style: AppTextStyles.titleMedium),
+          const Text('اتصال به تسک (اختیاری)', style: AppTextStyles.titleMedium),
           const SizedBox(height: 10),
           _buildTaskSelector(focusProvider, taskProvider),
           const SizedBox(height: 24),
@@ -178,7 +177,7 @@ class FocusTimerScreen extends StatelessWidget {
           child: Container(
             width: 72,
             height: 72,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: AppColors.neonOrange,
               boxShadow: [
@@ -314,7 +313,7 @@ class FocusTimerScreen extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text('سشن‌های ثبت‌شده امروز', style: AppTextStyles.titleMedium),
+            const Text('سشن‌های ثبت‌شده امروز', style: AppTextStyles.titleMedium),
             const Spacer(),
             Text(
               '${logs.length} مورد',

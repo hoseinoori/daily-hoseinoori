@@ -92,7 +92,7 @@ class _TaskDetailSheetState extends State<TaskDetailSheet> {
                   // توضیحات
                   if (widget.task.description != null &&
                       widget.task.description!.isNotEmpty) ...[
-                    Text('توضیحات', style: AppTextStyles.titleSmall),
+                    const Text('توضیحات', style: AppTextStyles.titleSmall),
                     const SizedBox(height: 8),
                     GlassCard(
                       child: Text(
@@ -110,7 +110,7 @@ class _TaskDetailSheetState extends State<TaskDetailSheet> {
                         const Icon(Icons.schedule_rounded,
                             color: AppColors.neonOrange, size: 16),
                         const SizedBox(width: 6),
-                        Text('مهلت: ', style: AppTextStyles.titleSmall),
+                        const Text('مهلت: ', style: AppTextStyles.titleSmall),
                         Text(
                           _formatDate(widget.task.deadline!),
                           style: AppTextStyles.bodyMedium,
@@ -192,7 +192,7 @@ class _TaskDetailSheetState extends State<TaskDetailSheet> {
                   const SizedBox(height: 24),
 
                   // دکمه‌های تغییر وضعیت سریع
-                  Text('تغییر وضعیت', style: AppTextStyles.titleSmall),
+                  const Text('تغییر وضعیت', style: AppTextStyles.titleSmall),
                   const SizedBox(height: 10),
                   _buildStatusButtons(context),
                 ],
@@ -293,7 +293,7 @@ class _TaskDetailSheetState extends State<TaskDetailSheet> {
                     ),
                     child: Text(
                       s.$2,
-                      style: TextStyle(fontSize: 11),
+                      style: const TextStyle(fontSize: 11),
                     ),
                   ),
                 ),
@@ -336,8 +336,10 @@ class _TaskDetailSheetState extends State<TaskDetailSheet> {
         false;
 
     if (confirmed && mounted) {
-      await context.read<TaskProvider>().deleteTask(widget.task.id);
-      if (mounted) Navigator.pop(context);
+      final taskProvider = context.read<TaskProvider>();
+      final navigator = Navigator.of(context);
+      await taskProvider.deleteTask(widget.task.id);
+      if (mounted) navigator.pop();
     }
   }
 

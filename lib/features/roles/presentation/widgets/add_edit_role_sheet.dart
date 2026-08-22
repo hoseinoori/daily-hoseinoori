@@ -178,7 +178,7 @@ class _AddEditRoleSheetState extends State<AddEditRoleSheet> {
             const SizedBox(height: 20),
 
             // ── انتخاب آیکون ─────────────────────────────────────────────────
-            Text('آیکون', style: AppTextStyles.titleSmall),
+            const Text('آیکون', style: AppTextStyles.titleSmall),
             const SizedBox(height: 10),
             Wrap(
               spacing: 8,
@@ -216,7 +216,7 @@ class _AddEditRoleSheetState extends State<AddEditRoleSheet> {
             const SizedBox(height: 20),
 
             // ── انتخاب رنگ ───────────────────────────────────────────────────
-            Text('رنگ', style: AppTextStyles.titleSmall),
+            const Text('رنگ', style: AppTextStyles.titleSmall),
             const SizedBox(height: 10),
             Wrap(
               spacing: 10,

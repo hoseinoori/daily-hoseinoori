@@ -48,7 +48,7 @@ class WeeklyBarChart extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('روند تمرکز در ۷ روز گذشته',
+                  const Text('روند تمرکز در ۷ روز گذشته',
                       style: AppTextStyles.titleMedium),
                   Text(
                     'دقایق کار عمیق در هر روز',
@@ -108,7 +108,7 @@ class WeeklyBarChart extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(6),
                                   boxShadow: stat.deepWorkMinutes > 0
                                       ? [
-                                          BoxShadow(
+                                          const BoxShadow(
                                             color: AppColors.glowNeonOrange,
                                             blurRadius: 8,
                                             spreadRadius: 1,
