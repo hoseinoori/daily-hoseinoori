@@ -14,6 +14,7 @@ import 'core/constants/app_constants.dart';
 import 'core/theme/app_colors.dart';
 import 'core/theme/app_text_styles.dart';
 import 'core/theme/app_theme.dart';
+import 'features/calendar/presentation/screens/calendar_screen.dart';
 import 'features/roles/presentation/screens/roles_screen.dart';
 import 'features/routines/presentation/screens/routines_screen.dart';
 import 'features/tasks/presentation/screens/kanban_screen.dart';
@@ -45,7 +46,6 @@ class DailyHoseinooriApp extends StatelessWidget {
       ],
       builder: (context, child) {
         return Directionality(
-          // برنامه از راست به چپ (RTL) نمایش داده می‌شود
           textDirection: TextDirection.rtl,
           child: child!,
         );
@@ -63,13 +63,13 @@ class DailyHoseinooriApp extends StatelessWidget {
 
 /// [AppShell] – اسکلت اصلی UI با ناوبری پایین (Bottom Navigation)
 ///
-/// این Widget مسئول مدیریت ناوبری بین ماژول‌های اصلی برنامه است:
-/// - ۰: تقویم روزانه (Calendar) - Phase 3
+/// مدیریت ناوبری بین ماژول‌های اصلی برنامه:
+/// - ۰: تقویم روزانه (Calendar & Timeline) - Phase 3
 /// - ۱: کانبان / تسک‌ها (Kanban) - Phase 2
 /// - ۲: نقشه ذهنی نقش‌ها (Mind Map) - Phase 2
 /// - ۳: روتین‌های هفتگی (Routines) - Phase 2
-/// - ۴: تایمر فوکوس (Focus) - Phase 4
-/// - ۵: یادداشت‌ها (Notes) - Phase 4
+/// - ۴: یادداشت‌ها (Notes) - Phase 4
+/// - ۵: تایمر فوکوس (Focus) - Phase 4
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
 
@@ -78,8 +78,8 @@ class AppShell extends StatefulWidget {
 }
 
 class _AppShellState extends State<AppShell> {
-  /// ایندکس تب فعال در ناوبری
-  int _currentIndex = 1; // شروع با کانبان در Phase 2
+  /// ایندکس تب فعال در ناوبری (پیش‌فرض: تقویم)
+  int _currentIndex = 0;
 
   /// لیست آیتم‌های ناوبری
   static const List<_NavItem> _navItems = [
@@ -123,6 +123,8 @@ class _AppShellState extends State<AppShell> {
   /// [_buildCurrentPage] – ساخت صفحه فعلی بر اساس تب انتخابی
   Widget _buildCurrentPage() {
     switch (_currentIndex) {
+      case 0:
+        return const CalendarScreen();
       case 1:
         return const KanbanScreen();
       case 2:
@@ -141,9 +143,7 @@ class _AppShellState extends State<AppShell> {
   Widget _buildBottomNav() {
     return Container(
       decoration: BoxDecoration(
-        // پس‌زمینه نیمه‌شفاف
         color: AppColors.surface1.withOpacity(0.95),
-        // حاشیه شیشه‌ای در بالا
         border: const Border(
           top: BorderSide(
             color: AppColors.glassBorder,
@@ -259,9 +259,7 @@ class _PlaceholderPage extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              pageIndex == 0
-                  ? 'این ماژول در Phase 3 (تقویم و تایم‌لاین) فعال خواهد شد'
-                  : 'این ماژول در فازهای بعدی فعال خواهد شد',
+              'این ماژول در Phase 4 (یادداشت‌ها و تایمر فوکوس) پیاده‌سازی خواهد شد',
               style: AppTextStyles.bodyMedium.copyWith(
                 color: AppColors.textDisabled,
               ),

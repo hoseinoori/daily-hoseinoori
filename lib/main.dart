@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 
 import 'app.dart';
 import 'core/database/app_database.dart';
+import 'features/calendar/providers/calendar_provider.dart';
 import 'features/focus_timer/data/repositories/focus_repository.dart';
 import 'features/notes/data/repositories/note_repository.dart';
 import 'features/roles/data/repositories/role_repository.dart';
@@ -25,15 +26,7 @@ import 'features/tasks/data/repositories/task_repository.dart';
 import 'features/tasks/providers/task_provider.dart';
 
 /// [main] – نقطه ورود اصلی برنامه
-///
-/// ترتیب اجرا:
-/// 1. مقداردهی اولیه WidgetsFlutterBinding
-/// 2. تنظیم جهت‌گیری صفحه (Portrait + Landscape)
-/// 3. تنظیم رنگ Status Bar
-/// 4. ایجاد نمونه دیتابیس
-/// 5. اجرای برنامه با MultiProvider
 void main() async {
-  // اطمینان از راه‌اندازی صحیح WidgetsBinding قبل از استفاده از async ops
   WidgetsFlutterBinding.ensureInitialized();
 
   // تنظیم جهت‌های پشتیبانی‌شده صفحه نمایش
@@ -78,7 +71,7 @@ void main() async {
         Provider<NoteRepository>.value(value: noteRepository),
         Provider<FocusRepository>.value(value: focusRepository),
 
-        // ── State Management Providers (Phase 2) ────────────────────────────
+        // ── State Management Providers (Phases 1, 2, 3) ─────────────────────
         ChangeNotifierProvider<RoleProvider>(
           create: (_) => RoleProvider(roleRepository),
         ),
@@ -87,6 +80,9 @@ void main() async {
         ),
         ChangeNotifierProvider<RoutineProvider>(
           create: (_) => RoutineProvider(routineRepository),
+        ),
+        ChangeNotifierProvider<CalendarProvider>(
+          create: (_) => CalendarProvider(taskRepository, routineRepository),
         ),
       ],
       child: const DailyHoseinooriApp(),
