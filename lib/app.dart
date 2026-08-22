@@ -14,6 +14,9 @@ import 'core/constants/app_constants.dart';
 import 'core/theme/app_colors.dart';
 import 'core/theme/app_text_styles.dart';
 import 'core/theme/app_theme.dart';
+import 'features/roles/presentation/screens/roles_screen.dart';
+import 'features/routines/presentation/screens/routines_screen.dart';
+import 'features/tasks/presentation/screens/kanban_screen.dart';
 
 /// [DailyHoseinooriApp] – Widget ریشه اپلیکیشن
 class DailyHoseinooriApp extends StatelessWidget {
@@ -61,11 +64,12 @@ class DailyHoseinooriApp extends StatelessWidget {
 /// [AppShell] – اسکلت اصلی UI با ناوبری پایین (Bottom Navigation)
 ///
 /// این Widget مسئول مدیریت ناوبری بین ماژول‌های اصلی برنامه است:
-/// - تقویم روزانه (Calendar)
-/// - کانبان / تسک‌ها (Kanban)
-/// - نقشه ذهنی نقش‌ها (Mind Map)
-/// - یادداشت‌ها (Notes)
-/// - تایمر فوکوس (Focus)
+/// - ۰: تقویم روزانه (Calendar) - Phase 3
+/// - ۱: کانبان / تسک‌ها (Kanban) - Phase 2
+/// - ۲: نقشه ذهنی نقش‌ها (Mind Map) - Phase 2
+/// - ۳: روتین‌های هفتگی (Routines) - Phase 2
+/// - ۴: تایمر فوکوس (Focus) - Phase 4
+/// - ۵: یادداشت‌ها (Notes) - Phase 4
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
 
@@ -75,7 +79,7 @@ class AppShell extends StatefulWidget {
 
 class _AppShellState extends State<AppShell> {
   /// ایندکس تب فعال در ناوبری
-  int _currentIndex = 0;
+  int _currentIndex = 1; // شروع با کانبان در Phase 2
 
   /// لیست آیتم‌های ناوبری
   static const List<_NavItem> _navItems = [
@@ -90,6 +94,10 @@ class _AppShellState extends State<AppShell> {
     _NavItem(
       icon: Icons.account_tree_rounded,
       label: 'نقش‌ها',
+    ),
+    _NavItem(
+      icon: Icons.alarm_rounded,
+      label: 'روتین‌ها',
     ),
     _NavItem(
       icon: Icons.sticky_note_2_rounded,
@@ -114,12 +122,19 @@ class _AppShellState extends State<AppShell> {
 
   /// [_buildCurrentPage] – ساخت صفحه فعلی بر اساس تب انتخابی
   Widget _buildCurrentPage() {
-    // در Phase 1 یک Placeholder نمایش می‌دهیم
-    // در Phase های بعدی هر صفحه جایگزین می‌شود
-    return _PlaceholderPage(
-      navItem: _navItems[_currentIndex],
-      pageIndex: _currentIndex,
-    );
+    switch (_currentIndex) {
+      case 1:
+        return const KanbanScreen();
+      case 2:
+        return const RolesScreen();
+      case 3:
+        return const RoutinesScreen();
+      default:
+        return _PlaceholderPage(
+          navItem: _navItems[_currentIndex],
+          pageIndex: _currentIndex,
+        );
+    }
   }
 
   /// [_buildBottomNav] – ساخت نوار ناوبری پایین با طراحی گلس‌مورفیسم
@@ -138,6 +153,7 @@ class _AppShellState extends State<AppShell> {
       ),
       child: BottomNavigationBar(
         currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
         onTap: (index) => setState(() => _currentIndex = index),
         items: _navItems
             .map(
@@ -153,12 +169,21 @@ class _AppShellState extends State<AppShell> {
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
-// ████  صفحه Placeholder برای Phase 1  ████
+// ████  مدل داخلی آیتم ناوبری  ████
 // ═════════════════════════════════════════════════════════════════════════════
+class _NavItem {
+  final IconData icon;
+  final String label;
 
-/// [_PlaceholderPage] – صفحه موقت برای نمایش پایه برنامه در Phase 1
-///
-/// در فازهای بعدی با UI واقعی جایگزین می‌شود.
+  const _NavItem({
+    required this.icon,
+    required this.label,
+  });
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// ████  صفحه Placeholder برای ماژول‌های آینده  ████
+// ═════════════════════════════════════════════════════════════════════════════
 class _PlaceholderPage extends StatelessWidget {
   final _NavItem navItem;
   final int pageIndex;
@@ -171,11 +196,9 @@ class _PlaceholderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ── AppBar با عنوان بخش ────────────────────────────────────────────────
       appBar: AppBar(
         title: Row(
           children: [
-            // لوگو / آیکون برنامه
             Container(
               width: 32,
               height: 32,
@@ -194,29 +217,17 @@ class _PlaceholderPage extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 12),
-            // عنوان بخش فعلی
             Text(
               navItem.label,
               style: AppTextStyles.headlineSmall,
             ),
           ],
         ),
-        actions: [
-          // دکمه تنظیمات
-          IconButton(
-            icon: const Icon(Icons.settings_rounded),
-            color: AppColors.textSecondary,
-            onPressed: () {},
-          ),
-        ],
       ),
-
-      // ── محتوای اصلی صفحه ──────────────────────────────────────────────────
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // آیکون بزرگ نئونی
             Container(
               width: 100,
               height: 100,
@@ -242,54 +253,23 @@ class _PlaceholderPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            // عنوان صفحه
             Text(
               navItem.label,
               style: AppTextStyles.headlineMedium,
             ),
             const SizedBox(height: 12),
-            // توضیح Phase
             Text(
-              'در حال آماده‌سازی...',
-              style: AppTextStyles.bodyMedium,
-            ),
-            const SizedBox(height: 8),
-            Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-              decoration: BoxDecoration(
-                color: AppColors.glassActive,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: AppColors.neonOrange.withOpacity(0.3),
-                  width: 1,
-                ),
+              pageIndex == 0
+                  ? 'این ماژول در Phase 3 (تقویم و تایم‌لاین) فعال خواهد شد'
+                  : 'این ماژول در فازهای بعدی فعال خواهد شد',
+              style: AppTextStyles.bodyMedium.copyWith(
+                color: AppColors.textDisabled,
               ),
-              child: Text(
-                'Phase 1 – Foundation ✓',
-                style: AppTextStyles.neonAccent.copyWith(fontSize: 12),
-              ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
       ),
-
-      // ── دکمه عمل شناور ────────────────────────────────────────────────────
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add_rounded),
-      ),
     );
   }
-}
-
-/// [_NavItem] – مدل داده برای آیتم‌های ناوبری
-class _NavItem {
-  final IconData icon;
-  final String label;
-
-  const _NavItem({
-    required this.icon,
-    required this.label,
-  });
 }
