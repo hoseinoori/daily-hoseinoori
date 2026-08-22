@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   # ── پایگاه داده / Database ──────────────────────────
   # Drift: SQLite ORM تایپ‌سیف برای Flutter

@@ -9,6 +9,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/constants/app_constants.dart';
 import 'core/theme/app_colors.dart';
@@ -38,8 +39,9 @@ class DailyHoseinooriApp extends StatelessWidget {
         Locale('en', 'US'),
       ],
       localizationsDelegates: const [
-        DefaultMaterialLocalizations.delegate,
-        DefaultWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
       builder: (context, child) {
         return Directionality(
