@@ -17,7 +17,9 @@ import 'app.dart';
 import 'core/database/app_database.dart';
 import 'features/calendar/providers/calendar_provider.dart';
 import 'features/focus_timer/data/repositories/focus_repository.dart';
+import 'features/focus_timer/providers/focus_provider.dart';
 import 'features/notes/data/repositories/note_repository.dart';
+import 'features/notes/providers/note_provider.dart';
 import 'features/roles/data/repositories/role_repository.dart';
 import 'features/roles/providers/role_provider.dart';
 import 'features/routines/data/repositories/routine_repository.dart';
@@ -71,7 +73,7 @@ void main() async {
         Provider<NoteRepository>.value(value: noteRepository),
         Provider<FocusRepository>.value(value: focusRepository),
 
-        // ── State Management Providers (Phases 1, 2, 3) ─────────────────────
+        // ── State Management Providers (Phases 1-4) ─────────────────────────
         ChangeNotifierProvider<RoleProvider>(
           create: (_) => RoleProvider(roleRepository),
         ),
@@ -83,6 +85,12 @@ void main() async {
         ),
         ChangeNotifierProvider<CalendarProvider>(
           create: (_) => CalendarProvider(taskRepository, routineRepository),
+        ),
+        ChangeNotifierProvider<NoteProvider>(
+          create: (_) => NoteProvider(noteRepository),
+        ),
+        ChangeNotifierProvider<FocusProvider>(
+          create: (_) => FocusProvider(focusRepository),
         ),
       ],
       child: const DailyHoseinooriApp(),

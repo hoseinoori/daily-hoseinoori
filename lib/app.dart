@@ -12,9 +12,10 @@ import 'package:flutter/material.dart';
 
 import 'core/constants/app_constants.dart';
 import 'core/theme/app_colors.dart';
-import 'core/theme/app_text_styles.dart';
 import 'core/theme/app_theme.dart';
 import 'features/calendar/presentation/screens/calendar_screen.dart';
+import 'features/focus_timer/presentation/screens/focus_timer_screen.dart';
+import 'features/notes/presentation/screens/notes_screen.dart';
 import 'features/roles/presentation/screens/roles_screen.dart';
 import 'features/routines/presentation/screens/routines_screen.dart';
 import 'features/tasks/presentation/screens/kanban_screen.dart';
@@ -26,15 +27,10 @@ class DailyHoseinooriApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // ── اطلاعات پایه برنامه ──────────────────────────────────────────────
       title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
-
-      // ── تم برنامه ──────────────────────────────────────────────────────────
       theme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
-
-      // ── پشتیبانی از زبان فارسی و RTL ──────────────────────────────────────
       locale: const Locale('fa', 'IR'),
       supportedLocales: const [
         Locale('fa', 'IR'),
@@ -50,8 +46,6 @@ class DailyHoseinooriApp extends StatelessWidget {
           child: child!,
         );
       },
-
-      // ── صفحه اولیه ─────────────────────────────────────────────────────────
       home: const AppShell(),
     );
   }
@@ -68,8 +62,8 @@ class DailyHoseinooriApp extends StatelessWidget {
 /// - ۱: کانبان / تسک‌ها (Kanban) - Phase 2
 /// - ۲: نقشه ذهنی نقش‌ها (Mind Map) - Phase 2
 /// - ۳: روتین‌های هفتگی (Routines) - Phase 2
-/// - ۴: یادداشت‌ها (Notes) - Phase 4
-/// - ۵: تایمر فوکوس (Focus) - Phase 4
+/// - ۴: یادداشت‌ها و ژورنال (Notes & Journal) - Phase 4
+/// - ۵: تایمر فوکوس (Focus & Pomodoro) - Phase 4
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
 
@@ -78,10 +72,8 @@ class AppShell extends StatefulWidget {
 }
 
 class _AppShellState extends State<AppShell> {
-  /// ایندکس تب فعال در ناوبری (پیش‌فرض: تقویم)
   int _currentIndex = 0;
 
-  /// لیست آیتم‌های ناوبری
   static const List<_NavItem> _navItems = [
     _NavItem(
       icon: Icons.calendar_today_rounded,
@@ -112,15 +104,11 @@ class _AppShellState extends State<AppShell> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ── بدنه اصلی ─────────────────────────────────────────────────────────
       body: _buildCurrentPage(),
-
-      // ── نوار ناوبری پایین ──────────────────────────────────────────────────
       bottomNavigationBar: _buildBottomNav(),
     );
   }
 
-  /// [_buildCurrentPage] – ساخت صفحه فعلی بر اساس تب انتخابی
   Widget _buildCurrentPage() {
     switch (_currentIndex) {
       case 0:
@@ -131,15 +119,15 @@ class _AppShellState extends State<AppShell> {
         return const RolesScreen();
       case 3:
         return const RoutinesScreen();
+      case 4:
+        return const NotesScreen();
+      case 5:
+        return const FocusTimerScreen();
       default:
-        return _PlaceholderPage(
-          navItem: _navItems[_currentIndex],
-          pageIndex: _currentIndex,
-        );
+        return const CalendarScreen();
     }
   }
 
-  /// [_buildBottomNav] – ساخت نوار ناوبری پایین با طراحی گلس‌مورفیسم
   Widget _buildBottomNav() {
     return Container(
       decoration: BoxDecoration(
@@ -168,9 +156,6 @@ class _AppShellState extends State<AppShell> {
   }
 }
 
-// ═════════════════════════════════════════════════════════════════════════════
-// ████  مدل داخلی آیتم ناوبری  ████
-// ═════════════════════════════════════════════════════════════════════════════
 class _NavItem {
   final IconData icon;
   final String label;
@@ -179,95 +164,4 @@ class _NavItem {
     required this.icon,
     required this.label,
   });
-}
-
-// ═════════════════════════════════════════════════════════════════════════════
-// ████  صفحه Placeholder برای ماژول‌های آینده  ████
-// ═════════════════════════════════════════════════════════════════════════════
-class _PlaceholderPage extends StatelessWidget {
-  final _NavItem navItem;
-  final int pageIndex;
-
-  const _PlaceholderPage({
-    required this.navItem,
-    required this.pageIndex,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            Container(
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(
-                color: AppColors.glassActive,
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: AppColors.neonOrange.withOpacity(0.5),
-                  width: 1,
-                ),
-              ),
-              child: const Icon(
-                Icons.bolt_rounded,
-                color: AppColors.neonOrange,
-                size: 20,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Text(
-              navItem.label,
-              style: AppTextStyles.headlineSmall,
-            ),
-          ],
-        ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 100,
-              height: 100,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.glassBackground,
-                border: Border.all(
-                  color: AppColors.glassBorder,
-                  width: 1,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.glowNeonOrange,
-                    blurRadius: AppTheme.neonGlowRadius,
-                    spreadRadius: 2,
-                  ),
-                ],
-              ),
-              child: Icon(
-                navItem.icon,
-                color: AppColors.neonOrange,
-                size: 48,
-              ),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              navItem.label,
-              style: AppTextStyles.headlineMedium,
-            ),
-            const SizedBox(height: 12),
-            Text(
-              'این ماژول در Phase 4 (یادداشت‌ها و تایمر فوکوس) پیاده‌سازی خواهد شد',
-              style: AppTextStyles.bodyMedium.copyWith(
-                color: AppColors.textDisabled,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
