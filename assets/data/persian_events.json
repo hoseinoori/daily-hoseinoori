@@ -1,0 +1,100 @@
+{
+  "holidays": [
+    {
+      "month": 1,
+      "day": 1,
+      "title": "جشن نوروز",
+      "type": "national",
+      "is_holiday": true
+    },
+    {
+      "month": 1,
+      "day": 2,
+      "title": "عیدنوروز",
+      "type": "national",
+      "is_holiday": true
+    },
+    {
+      "month": 1,
+      "day": 3,
+      "title": "عیدنوروز",
+      "type": "national",
+      "is_holiday": true
+    },
+    {
+      "month": 1,
+      "day": 4,
+      "title": "عیدنوروز",
+      "type": "national",
+      "is_holiday": true
+    },
+    {
+      "month": 1,
+      "day": 12,
+      "title": "روز جمهوری اسلامی ایران",
+      "type": "national",
+      "is_holiday": true
+    },
+    {
+      "month": 1,
+      "day": 13,
+      "title": "روز طبیعت (سیزده‌به‌در)",
+      "type": "national",
+      "is_holiday": true
+    },
+    {
+      "month": 3,
+      "day": 14,
+      "title": "رحلت حضرت امام خمینی (ره)",
+      "type": "religious",
+      "is_holiday": true
+    },
+    {
+      "month": 3,
+      "day": 15,
+      "title": "قیام ۱۵ خرداد",
+      "type": "national",
+      "is_holiday": true
+    },
+    {
+      "month": 6,
+      "day": 31,
+      "title": "شهادت علی ابن موسی الرضا (ع)",
+      "type": "religious",
+      "is_holiday": true
+    },
+    {
+      "month": 7,
+      "day": 15,
+      "title": "ولادت حضرت محمد (ص) و امام صادق (ع)",
+      "type": "religious",
+      "is_holiday": false
+    },
+    {
+      "month": 10,
+      "day": 22,
+      "title": "شکوفایی انقلاب اسلامی",
+      "type": "national",
+      "is_holiday": false
+    },
+    {
+      "month": 11,
+      "day": 22,
+      "title": "پیروزی انقلاب اسلامی",
+      "type": "national",
+      "is_holiday": true
+    },
+    {
+      "month": 12,
+      "day": 29,
+      "title": "ملی شدن صنعت نفت ایران",
+      "type": "national",
+      "is_holiday": true
+    }
+  ],
+  "notes": {
+    "version": "1.0",
+    "description": "مناسبت‌های تقویم شمسی ایران - برای استفاده در برنامه روزانه",
+    "index_base": "شنبه = 0، جمعه = 6"
+  }
+}
