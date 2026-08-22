@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'core/constants/app_constants.dart';
 import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
+import 'features/analytics/presentation/screens/analytics_screen.dart';
 import 'features/calendar/presentation/screens/calendar_screen.dart';
 import 'features/focus_timer/presentation/screens/focus_timer_screen.dart';
 import 'features/notes/presentation/screens/notes_screen.dart';
@@ -57,13 +58,14 @@ class DailyHoseinooriApp extends StatelessWidget {
 
 /// [AppShell] – اسکلت اصلی UI با ناوبری پایین (Bottom Navigation)
 ///
-/// مدیریت ناوبری بین ماژول‌های اصلی برنامه:
-/// - ۰: تقویم روزانه (Calendar & Timeline) - Phase 3
-/// - ۱: کانبان / تسک‌ها (Kanban) - Phase 2
-/// - ۲: نقشه ذهنی نقش‌ها (Mind Map) - Phase 2
-/// - ۳: روتین‌های هفتگی (Routines) - Phase 2
-/// - ۴: یادداشت‌ها و ژورنال (Notes & Journal) - Phase 4
-/// - ۵: تایمر فوکوس (Focus & Pomodoro) - Phase 4
+/// مدیریت ناوبری بین ماژول‌های برنامه:
+/// - ۰: تقویم روزانه (Calendar & Timeline)
+/// - ۱: کانبان / تسک‌ها (Kanban)
+/// - ۲: نقشه ذهنی نقش‌ها (Mind Map)
+/// - ۳: روتین‌های هفتگی (Routines)
+/// - ۴: یادداشت‌ها و ژورنال (Notes & Journal)
+/// - ۵: تایمر فوکوس (Focus & Pomodoro)
+/// - ۶: آمار و بهره‌وری (Analytics)
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
 
@@ -99,6 +101,10 @@ class _AppShellState extends State<AppShell> {
       icon: Icons.timer_rounded,
       label: 'فوکوس',
     ),
+    _NavItem(
+      icon: Icons.analytics_rounded,
+      label: 'آمار',
+    ),
   ];
 
   @override
@@ -123,6 +129,8 @@ class _AppShellState extends State<AppShell> {
         return const NotesScreen();
       case 5:
         return const FocusTimerScreen();
+      case 6:
+        return const AnalyticsScreen();
       default:
         return const CalendarScreen();
     }
@@ -142,11 +150,13 @@ class _AppShellState extends State<AppShell> {
       child: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
+        selectedFontSize: 11,
+        unselectedFontSize: 10,
         onTap: (index) => setState(() => _currentIndex = index),
         items: _navItems
             .map(
               (item) => BottomNavigationBarItem(
-                icon: Icon(item.icon),
+                icon: Icon(item.icon, size: 20),
                 label: item.label,
               ),
             )
