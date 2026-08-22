@@ -35,7 +35,7 @@ dependencies:
   # مدیریت حالت ساده برای لایه اول
   provider: ^6.1.2
   # قالب‌بندی تاریخ و زمان
-  intl: ^0.19.0
+  intl: ^0.20.2
   # آیکون‌های مدرن Material 3
   cupertino_icons: ^1.0.8
 
